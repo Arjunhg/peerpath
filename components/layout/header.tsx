@@ -74,7 +74,7 @@ export default function Header({ isPro }: { isPro: boolean }) {
                   </Badge>
                 </motion.div>
               ) : (
-                <span className="text-sm text-muted-foreground">Free Plan</span>
+                <span className="text-sm text-muted-foreground">Welcome</span>
               )}
               <UserButton
                 appearance={{
