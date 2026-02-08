@@ -8,11 +8,9 @@ import { Badge } from "../ui/badge";
 export default function AIMatching({
   totalGoals,
   selectedCommunityId,
-  showLockIcon,
 }: {
   totalGoals: number;
   selectedCommunityId: string;
-  showLockIcon: boolean;
 }) {
   const aiPartnerMutation = useAiPartners();
 
@@ -62,13 +60,11 @@ export default function AIMatching({
           size="lg"
           className="w-full gap-2 group relative overflow-hidden"
           disabled={
-            totalGoals === 0 || showLockIcon || aiPartnerMutation.isPending
+            totalGoals === 0 || aiPartnerMutation.isPending
           }
           onClick={handleFindAIPartners}
         >
-          {showLockIcon ? (
-            <LockIcon className="size-4" />
-          ) : aiPartnerMutation.isPending ? (
+          {aiPartnerMutation.isPending ? (
             <Loader2Icon className="size-4 animate-spin" />
           ) : (
             <SparklesIcon className="size-4 group-hover:rotate-12 transition-transform duration-300" />

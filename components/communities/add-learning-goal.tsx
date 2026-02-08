@@ -8,10 +8,8 @@ import { motion, AnimatePresence } from "framer-motion";
 
 export default function AddLearningGoal({
   selectedCommunityId,
-  showLockIcon,
 }: {
   selectedCommunityId: string;
-  showLockIcon: boolean;
 }) {
   const [showNewGoalForm, setShowNewGoalForm] = useState(false);
   const [newGoalText, setNewGoalText] = useState("");
@@ -64,8 +62,7 @@ export default function AddLearningGoal({
                   onClick={handleCreateGoal}
                   disabled={
                     createGoalMutation.isPending ||
-                    newGoalText.length === 0 ||
-                    showLockIcon
+                    newGoalText.length === 0 
                   }
                   className="gap-2"
                 >
@@ -110,13 +107,10 @@ export default function AddLearningGoal({
               variant="outline"
               className="w-full border-dashed border-2 hover:border-primary/40 hover:bg-primary/5 transition-all duration-200 group"
               onClick={() => setShowNewGoalForm(true)}
-              disabled={showLockIcon}
             >
-              {showLockIcon ? (
-                <LockIcon className="size-4 text-muted-foreground" />
-              ) : (
+              
                 <PlusIcon className="size-4 group-hover:rotate-90 transition-transform duration-300" />
-              )}
+           
               Add Learning Goal
             </Button>
           </motion.div>

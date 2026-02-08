@@ -18,7 +18,7 @@ import {
 import { CardSkeleton, GoalsSkeleton } from "@/components/ui/loading-skeletons";
 import EmptyState from "@/components/ui/empty-state";
 import { useCommunities, useCommunityGoals } from "@/hooks/use-communities";
-import { useCurrentUser } from "@/hooks/use-users";
+// import { useCurrentUser } from "@/hooks/use-users";
 import {
   LockIcon,
   UsersIcon,
@@ -51,11 +51,6 @@ export default function CommunitiesPage() {
       });
     }
   }, [communities?.length]);
-
-  const numberOfCommunities = communities?.length || 0;
-  const { data: user } = useCurrentUser();
-  const isPro = user?.isPro;
-  const showLockIcon = numberOfCommunities >= 3 && !isPro;
 
   if (isLoadingCommunities) {
     return (
@@ -96,9 +91,6 @@ export default function CommunitiesPage() {
             <CardTitle className="flex items-center gap-2">
               <UsersIcon className="size-4 text-primary" />
               Your Communities
-              {showLockIcon && (
-                <LockIcon className="size-3.5 text-muted-foreground" />
-              )}
             </CardTitle>
             <CardDescription>
               {communities?.length}{" "}
@@ -223,7 +215,6 @@ export default function CommunitiesPage() {
                       </AnimatedList>
                       <AddLearningGoal
                         selectedCommunityId={selectedCommunity!}
-                        showLockIcon={showLockIcon}
                       />
                     </div>
                   ) : (
@@ -237,7 +228,6 @@ export default function CommunitiesPage() {
                       />
                       <AddLearningGoal
                         selectedCommunityId={selectedCommunity!}
-                        showLockIcon={showLockIcon}
                       />
                     </div>
                   )}
@@ -253,7 +243,6 @@ export default function CommunitiesPage() {
                   <AIMatching
                     totalGoals={communityGoals?.length || 0}
                     selectedCommunityId={selectedCommunity!}
-                    showLockIcon={showLockIcon}
                   />
                 </motion.div>
               )}

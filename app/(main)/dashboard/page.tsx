@@ -291,7 +291,7 @@ export default function DashboardPage() {
                 <AnimatedList className="space-y-2">
                   {userCommunities.map((community) => (
                     <AnimatedListItem key={community.id}>
-                      <Link href={`/communities/${community.id}`}>
+                      {/* <Link href={`/communities/${community.id}`}> */}
                         <Card className="shadow-none border bg-muted/30 hover:bg-muted/50 transition-all duration-200 cursor-pointer group">
                           <CardHeader className="py-3">
                             <div className="flex items-center justify-between">
@@ -303,11 +303,10 @@ export default function DashboardPage() {
                                   {community.community.description}
                                 </CardDescription>
                               </div>
-                              <ArrowRightIcon className="size-3.5 text-muted-foreground opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all duration-200 shrink-0" />
                             </div>
                           </CardHeader>
                         </Card>
-                      </Link>
+                      {/* </Link> */}
                     </AnimatedListItem>
                   ))}
                 </AnimatedList>
