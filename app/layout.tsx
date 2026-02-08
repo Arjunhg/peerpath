@@ -6,6 +6,8 @@ import {
 } from "@clerk/nextjs";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
+import { QueryProvider } from "@/components/providers/query-provider";
+import { Toaster } from "react-hot-toast";
 
 const outfitFont = Outfit({
   subsets: ["latin"],
@@ -28,9 +30,12 @@ export default function RootLayout({
         <body
           className={`${outfitFont.className} antialiased`}
         >
-          <Header isPro = {false}/>
-          {children}
-          <Footer/>
+          <QueryProvider>
+            <Header isPro = {false}/>
+              {children}
+              <Toaster/>
+            <Footer/>
+          </QueryProvider>
         </body>
       </html>
     </ClerkProvider>
