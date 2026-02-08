@@ -17,10 +17,10 @@ import {
   AnimatedListItem,
   StaggerGrid,
   StaggerGridItem,
-  FadeIn,
 } from "@/components/ui/animated-wrappers";
 import { DashboardSkeleton } from "@/components/ui/loading-skeletons";
 import EmptyState from "@/components/ui/empty-state";
+import CopilotPanel from "@/components/tambo/copilot-panel";
 import { useMatches } from "@/hooks/use-ai-partner";
 import { client } from "@/lib/api-client";
 import { useUser } from "@clerk/nextjs";
@@ -186,6 +186,20 @@ export default function DashboardPage() {
           />
         </StaggerGridItem>
       </StaggerGrid>
+
+      <AnimatedCard delay={0.26} hover={false}>
+        <CopilotPanel
+          contextKey="dashboard"
+          title="Dashboard Copilot"
+          description="Ask for progress snapshots, momentum insights, and practical next steps."
+          hint="The copilot calls local dashboard tools and renders structured UI cards instead of plain text."
+          starterPrompts={[
+            "Show my learning momentum this week",
+            "What should I do next to get more matches?",
+          ]}
+          placeholder="Ask about your dashboard progress..."
+        />
+      </AnimatedCard>
 
       {/* Two Column Layout */}
       <div className="grid gap-6 lg:grid-cols-2">

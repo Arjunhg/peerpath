@@ -1,3 +1,5 @@
+import MyTamboProvider from "@/components/providers/tambo-provider";
+
 export default function MainLayout({
   children,
 }: {
@@ -6,7 +8,7 @@ export default function MainLayout({
   return (
     <div className="min-h-screen bg-background">
       <main className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
-        {children}
+          {children}
       </main>
     </div>
   );

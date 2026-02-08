@@ -21,6 +21,7 @@ import { client } from "@/lib/api-client";
 import { useUser } from "@clerk/nextjs";
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import CopilotPanel from "../tambo/copilot-panel";
 import {
   SendIcon,
   Loader2Icon,
@@ -205,8 +206,8 @@ export default function ChatInterface({ matchId }: { matchId: string }) {
       transition={{ duration: 0.4, ease: "easeOut" }}
       className="grid grid-cols-1 lg:grid-cols-3 gap-6"
     >
-      {/* Chat Panel */}
-      <div className="lg:col-span-2">
+      {/* Chat Panel + Copilot */}
+      <div className="lg:col-span-2 space-y-4">
         <Card className="h-162.5 flex flex-col overflow-hidden">
           {/* Chat Header */}
           <CardHeader className="border-b py-3 px-4 shrink-0">
@@ -382,10 +383,28 @@ export default function ChatInterface({ matchId }: { matchId: string }) {
             </div>
           </CardFooter>
         </Card>
+
+        {/* Chat Coach Copilot - below conversation */}
+        {conversation?.id ? (
+          <AnimatedCard delay={0.28} hover={false}>
+            <CopilotPanel
+              contextKey={`chat:${conversation.id}`}
+              title="Chat Coach Copilot"
+              description="Convert conversation history into concrete learning actions."
+              hint="The copilot pulls your latest summary and can render interactable checklists."
+              starterPrompts={[
+                "Generate a study action checklist from this chat",
+                "Turn this into a 3-step next-week plan",
+              ]}
+              placeholder="Ask for action items, progress plans, or coaching..."
+              scope={{ conversationId: conversation.id }}
+            />
+          </AnimatedCard>
+        ) : null}
       </div>
 
       {/* Summary Sidebar */}
-      <div className="lg:col-span-1 space-y-4">
+      <div className="lg:col-span-1">
         <AnimatedCard delay={0.2} hover={false}>
           <Card>
             <CardHeader>

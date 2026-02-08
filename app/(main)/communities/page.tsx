@@ -240,10 +240,12 @@ export default function CommunitiesPage() {
                   exit={{ opacity: 0, x: -10 }}
                   transition={{ duration: 0.25 }}
                 >
-                  <AIMatching
-                    totalGoals={communityGoals?.length || 0}
-                    selectedCommunityId={selectedCommunity!}
-                  />
+                  <div className="space-y-6">
+                    <AIMatching
+                      totalGoals={communityGoals?.length || 0}
+                      selectedCommunityId={selectedCommunity!}
+                    />
+                  </div>
                 </motion.div>
               )}
             </AnimatePresence>
